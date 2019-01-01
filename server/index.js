@@ -2,6 +2,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("./config/dev");
+const Rental = require("./models/rental");
+
+const rentalRoutes = require("./routes/rentals");
 
 //console.log(config.DB_URI);
 
@@ -10,10 +13,8 @@ mongoose.connect(config.DB_URI);
 //create an express server
 const app = express();
 
-//create route handler
-app.get("/rentals", (req, res) => {
-  res.send({ hi: "there" });
-});
+//apply middle to routes
+app.use("/api/v1/rentals", rentalRoutes);
 
 //express tells node to listen to port 3001 or production port
 const PORT = process.env.PORT || 3001;
