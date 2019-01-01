@@ -1,7 +1,9 @@
 import {
   FETCH_RENTALS,
   FETCH_RENTAL_BY_ID_INIT,
-  FETCH_RENTAL_BY_ID
+  FETCH_RENTAL_BY_ID,
+  FETCH_RENTALS_SUCCESS,
+  FETCH_RENTAL_BY_ID_SUCCESS
 } from "../actions/types";
 
 const INTIAL_STATE = {
@@ -16,9 +18,8 @@ const INTIAL_STATE = {
 
 export const rentalReducer = (state = INTIAL_STATE.rentals, action) => {
   switch (action.type) {
-    case FETCH_RENTALS:
+    case FETCH_RENTALS_SUCCESS:
       return { ...state, data: action.rentals };
-      break;
     default:
       return state;
   }
@@ -26,11 +27,11 @@ export const rentalReducer = (state = INTIAL_STATE.rentals, action) => {
 
 export const selectedRentalReducer = (state = INTIAL_STATE.rental, action) => {
   switch (action.type) {
-    case FETCH_RENTAL_BY_ID:
-      return { ...state, data: action.rental };
-      break;
     case FETCH_RENTAL_BY_ID_INIT:
       return { ...state, data: {} };
+    case FETCH_RENTAL_BY_ID_SUCCESS:
+      debugger;
+      return { ...state, data: action.rental };
     default:
       return state;
   }

@@ -6,6 +6,9 @@ import "App.css";
 import { Header } from "shared/Header";
 import RentalListing from "components/rental/rental-listing/RentalListing";
 import RentalDetail from "components/rental/rental-detail/RentalDetail";
+//import setupProxy from "./setupProxy";
+
+//setupProxy();
 
 const store = require("./reducers").init();
 

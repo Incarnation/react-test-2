@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("./config/dev");
 const Rental = require("./models/rental");
-
 const rentalRoutes = require("./routes/rental");
 
 //connect to mongodb db
