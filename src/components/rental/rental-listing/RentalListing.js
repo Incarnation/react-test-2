@@ -5,12 +5,12 @@ import * as actions from "actions";
 
 class RentalListing extends React.Component {
   componentWillMount() {
+    //debugger;
     this.props.dispatch(actions.fetchRentals());
   }
 
   render() {
     //debugger;
-    //console.log(this.props);
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home All Around the World</h1>

@@ -38,12 +38,12 @@ export function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ml-auto">
-            <a className="nav-item nav-link" to="/login">
+            <Link className="nav-item nav-link" to="/login">
               Login <span className="sr-only">(current)</span>
-            </a>
-            <a className="nav-item nav-link" to="/register">
+            </Link>
+            <Link className="nav-item nav-link" to="/register">
               Register
-            </a>
+            </Link>
           </div>
         </div>
       </div>

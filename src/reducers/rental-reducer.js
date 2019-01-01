@@ -28,7 +28,7 @@ export const selectedRentalReducer = (state = INTIAL_STATE.rental, action) => {
     case FETCH_RENTAL_BY_ID_INIT:
       return { ...state, data: {} };
     case FETCH_RENTAL_BY_ID_SUCCESS:
-      debugger;
+      //debugger;
       return { ...state, data: action.rental };
     default:
       return state;

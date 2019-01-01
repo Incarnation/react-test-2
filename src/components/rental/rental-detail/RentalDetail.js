@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "actions";
 import { RentalDetailInfo } from "./RentalDetailInfo";
+import { RentalMap } from "./RentalMap";
 
 class RentalDetail extends React.Component {
   //
@@ -25,7 +26,7 @@ class RentalDetail extends React.Component {
               <img src={rental.image} alt="" />
             </div>
             <div className="col-md-6">
-              {/*<RentalMap location={`${rental.city}, ${rental.street}`} />*/}
+              <RentalMap location={`${rental.city}, ${rental.street}`} />
             </div>
           </div>
         </div>
