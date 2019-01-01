@@ -1,4 +1,8 @@
-import { FETCH_RENTALS, FETCH_RENTAL_BY_ID } from "./types";
+import {
+  FETCH_RENTALS,
+  FETCH_RENTAL_BY_ID,
+  FETCH_RENTAL_BY_ID_INIT
+} from "./types";
 
 const rentals = [
   {
@@ -13,6 +17,12 @@ const rentals = [
   }
 ];
 
+const featchRentalByIdInit = () => {
+  return {
+    type: FETCH_RENTAL_BY_ID_INIT
+  };
+};
+
 export const fetchRentals = () => {
   return {
     type: FETCH_RENTALS,
@@ -20,11 +30,16 @@ export const fetchRentals = () => {
   };
 };
 
-export const featchRentalById = id => {
-  const rental = rentals.find(rental => rental.id === id);
+const featchRentalByIdSuccess = rental => {};
 
-  return {
-    type: FETCH_RENTAL_BY_ID,
-    rental: rental
+export const featchRentalById = id => {
+  return function(dispatch) {
+    dispatch(featchRentalByIdInit());
+
+    //send request to server async
+    setTimeout(() => {
+      const rental = rentals.find(rental => rental.id === id);
+    }, 1000);
   };
+  //const rental = rentals.find(rental => rental.id === id);
 };

@@ -1,9 +1,9 @@
 import React from "react";
-import RentalCard from "./RentalCard";
+import { RentalList } from "./RentalList";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import * as actions from "actions";
 
-class RentalList extends React.Component {
+class RentalListing extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,22 +14,13 @@ class RentalList extends React.Component {
     this.props.dispatch(actions.fetchRentals());
   }
 
-  //render
-  renderRentals() {
-    return this.props.rentals.map((rental, index) => {
-      return (
-        <RentalCard colNum="col-md-3 col-xs-6" key={index} rental={rental} />
-      );
-    });
-  }
-
   render() {
     //debugger;
     //console.log(this.props);
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home All Around the World</h1>
-        <div className="row">{this.renderRentals()}</div>
+        <RentalList rentals={this.props.rentals} />
       </section>
     );
   }
@@ -42,4 +33,4 @@ const mapStateToProps = (state, myprops) => {
   };
 };
 
-export default connect(mapStateToProps)(RentalList);
+export default connect(mapStateToProps)(RentalListing);
