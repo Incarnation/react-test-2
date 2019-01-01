@@ -2,10 +2,6 @@ import React from "react";
 import RentalCard from "./RentalCard";
 
 export class RentalList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   //render
   renderRentals() {
     return this.props.rentals.map((rental, index) => {

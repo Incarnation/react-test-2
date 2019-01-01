@@ -1,14 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "actions";
+import { RentalDetailInfo } from "./RentalDetailInfo";
 
 class RentalDetail extends React.Component {
-  constructor(props) {
-    super(props);
-
-    //this.id = this.props.match.params.id;
-  }
-
   //
   componentWillMount() {
     const rentalId = this.props.match.params.id;
@@ -19,16 +14,31 @@ class RentalDetail extends React.Component {
     const rental = this.props.rental;
 
     if (!rental._id) {
-      return <div>Loading</div>;
+      return <div>Loading...</div>;
     }
 
     return (
-      <div>
-        <h1>{rental.title}</h1>
-        <h1>{rental.city}</h1>
-        <h1>{rental.description}</h1>
-        <h1>{rental.dailyRate}</h1>
-      </div>
+      <section id="rentalDetails">
+        <div className="upper-section">
+          <div className="row">
+            <div className="col-md-6">
+              <img src={rental.image} alt="" />
+            </div>
+            <div className="col-md-6">
+              {/*<RentalMap location={`${rental.city}, ${rental.street}`} />*/}
+            </div>
+          </div>
+        </div>
+
+        <div className="details-section">
+          <div className="row">
+            <div className="col-md-8">
+              <RentalDetailInfo rental={rental} />
+            </div>
+            <div className="col-md-4">{/*<Booking rental={rental} />*/}</div>
+          </div>
+        </div>
+      </section>
     );
   }
 }

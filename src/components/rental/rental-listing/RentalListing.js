@@ -4,12 +4,6 @@ import { connect } from "react-redux";
 import * as actions from "actions";
 
 class RentalListing extends React.Component {
-  constructor(props) {
-    super(props);
-
-    //this.addRental = this.addRental.bind(this);
-  }
-
   componentWillMount() {
     this.props.dispatch(actions.fetchRentals());
   }

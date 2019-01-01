@@ -13,9 +13,6 @@ import RentalDetail from "components/rental/rental-detail/RentalDetail";
 const store = require("./reducers").init();
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Provider store={store}>
