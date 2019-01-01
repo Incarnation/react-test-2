@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//create an mongodb schema for rental information
 const rentalSchema = new Schema({
   title: {
     type: String,

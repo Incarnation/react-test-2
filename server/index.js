@@ -4,10 +4,9 @@ const mongoose = require("mongoose");
 const config = require("./config/dev");
 const Rental = require("./models/rental");
 
-const rentalRoutes = require("./routes/rentals");
+const rentalRoutes = require("./routes/rental");
 
-//console.log(config.DB_URI);
-
+//connect to mongodb db
 mongoose.connect(config.DB_URI);
 
 //create an express server
