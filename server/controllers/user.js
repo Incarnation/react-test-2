@@ -115,7 +115,7 @@ exports.register = function(req, res) {
   });
 };
 
-//secret endpoint authorization callback function
+//secret endpoint authorization callback function using middleware
 exports.authMiddleware = function(req, res, next) {
   //get token from req
   const token = req.headers.authorization;
@@ -126,28 +126,23 @@ exports.authMiddleware = function(req, res, next) {
 
     //find user in database
     User.findById(user.userId, function(err, user) {
-      return res.status(422).send({ errors: normalizeErrors(err.errors) });
-    });
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) });
+      }
 
-    //if there is user
-    if (user) {
-      //forward request to the next middleware
-      res.locals.user = user;
-      next();
-    } else {
-      //if there is no user
-      res.status(422).send({
-        errors: [
-          { title: "Not Authorized", detail: "You need to login to get access" }
-        ]
-      });
-    }
-  } else {
-    return res.status(422).send({
-      errors: [
-        { title: "Not Authorized", detail: "You need to login to get access" }
-      ]
+      //if there is user
+      if (user) {
+        //forward request to the next middleware
+        res.locals.user = user;
+        next();
+      } else {
+        //if there is no user
+        return notAuthorized(res);
+      }
     });
+  } else {
+    //if there is no token
+    return notAuthorized(res);
   }
 };
 
@@ -155,4 +150,13 @@ function parseToken(token) {
   //return jwt token
   //refer to https://www.npmjs.com/package/jsonwebtoken
   return jwt.verify(token.split(" ")[1], config.SECRET);
+}
+
+//not authorize function
+function notAuthorized(res) {
+  return res.status(401).send({
+    errors: [
+      { title: "Not Authorized", detail: "You need to login to get access" }
+    ]
+  });
 }
