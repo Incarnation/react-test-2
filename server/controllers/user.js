@@ -1,13 +1,60 @@
 const User = require("../models/user");
 const { normalizeErrors } = require("../helpers/mongoose");
+const jwt = require("jsonwebtoken");
+const config = require("../config/dev");
 
+//callback function for user authorization
 exports.auth = function(req, res) {
-  User.find({}, function(err, user) {
-    res.json(user);
+  //get user info from request body using body-parser
+  const { email, password } = req.body;
+
+  //validation username email password
+  if (!email || !password) {
+    return res.status(422).send({
+      errors: [{ title: "Data Missing", detail: "Provide email and password" }]
+    });
+  }
+
+  //find the user in database
+  User.findOne({ email }, function(err, user) {
+    //mongoose error
+    if (err) {
+      return res.status(422).send({ errors: normalizeErrors(err.errors) });
+    }
+
+    //user not exist
+    if (!user) {
+      return res.status(422).send({
+        errors: [{ title: "Invalid User", detail: "User doesn't exist" }]
+      });
+    }
+
+    ////compare the entered password with the user's password
+    //function defined in user model schema
+    if (user.hasSamePassword(password)) {
+      //return jwt token
+      //refer to https://www.npmjs.com/package/jsonwebtoken
+      const token = jwt.sign(
+        {
+          userId: user.id,
+          username: user.username
+        },
+        config.SECRET,
+        { expiresIn: "0.5h" }
+      );
+
+      return res.json(token);
+    } else {
+      return res.status(422).send({
+        errors: [{ title: "Invalid data", detail: "Wrong email or password" }]
+      });
+    }
+
+    //res.json(user);
   });
 };
 
-//callback function for post request user registration
+//callback function for post request for user registration
 exports.register = function(req, res) {
   //get info from the request body using body-parser
   //ES6 destructor
