@@ -54,3 +54,12 @@ const featchRentalByIdSuccess = rental => {
     rental: rental
   };
 };
+
+// USER User Authorization and Registration ACTIONS ---------------------------
+
+//register user action creator
+export const register = userData => {
+  return axios
+    .post("/api/v1/users/register", userData)
+    .then(res => res.data, err => Promise.reject(err.response.data.errors));
+};
