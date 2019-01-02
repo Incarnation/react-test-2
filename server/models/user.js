@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt");
 
 //create an mongodb schema for rental information
 const userSchema = new Schema({
@@ -26,6 +27,20 @@ const userSchema = new Schema({
   },
   rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }]
   //bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
+});
+
+//this function is called before the user is save to the database
+//hasing the passwords
+userSchema.pre("save", function(next) {
+  const user = this;
+  const saltRounds = 9;
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      // Store hash in your password DB.
+      user.password = hash;
+      next();
+    });
+  });
 });
 
 module.exports = mongoose.model("User", userSchema);
