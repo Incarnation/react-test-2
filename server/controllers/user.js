@@ -114,3 +114,45 @@ exports.register = function(req, res) {
     return res.json({ registered: true });
   });
 };
+
+//secret endpoint authorization callback function
+exports.authMiddleware = function(req, res, next) {
+  //get token from req
+  const token = req.headers.authorization;
+
+  if (token) {
+    //get the user
+    const user = parseToken(token);
+
+    //find user in database
+    User.findById(user.userId, function(err, user) {
+      return res.status(422).send({ errors: normalizeErrors(err.errors) });
+    });
+
+    //if there is user
+    if (user) {
+      //forward request to the next middleware
+      res.locals.user = user;
+      next();
+    } else {
+      //if there is no user
+      res.status(422).send({
+        errors: [
+          { title: "Not Authorized", detail: "You need to login to get access" }
+        ]
+      });
+    }
+  } else {
+    return res.status(422).send({
+      errors: [
+        { title: "Not Authorized", detail: "You need to login to get access" }
+      ]
+    });
+  }
+};
+
+function parseToken(token) {
+  //return jwt token
+  //refer to https://www.npmjs.com/package/jsonwebtoken
+  return jwt.verify(token.split(" ")[1], config.SECRET);
+}
