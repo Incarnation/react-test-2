@@ -16,6 +16,7 @@ const LoginForm = props => {
     errors
   } = props;
 
+  debugger;
   //return jsx for loginform component
   return (
     <form onSubmit={handleSubmit(submitCallBack)}>
@@ -42,6 +43,7 @@ const LoginForm = props => {
       >
         Login
       </button>
+      <BwmResError errors={errors} />
     </form>
   );
 };

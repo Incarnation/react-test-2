@@ -3,7 +3,8 @@ import {
   FETCH_RENTAL_BY_ID_SUCCESS,
   FETCH_RENTALS_SUCCESS,
   LOGIN_FAILURE,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGOUT
 } from "./types";
 
 import axios from "axios";
@@ -47,6 +48,7 @@ export const featchRentalById = id => {
   };
 };
 
+//action creaters to be dispatch after getting back the data from api
 const featchRentalsSuccess = rentals => {
   return {
     type: FETCH_RENTALS_SUCCESS,
@@ -81,7 +83,7 @@ export const register = userData => {
 //when the user refresh the pages after login
 export const checkAuthState = () => {
   return async dispatch => {
-    debugger;
+    //debugger;
     if (authService.isAuthenticated()) {
       dispatch(loginSuccess());
     }
@@ -101,7 +103,7 @@ export const login = userData => {
       .then(token => {
         //debugger;
         //when success
-        localStorage.setItem("auth_token", token);
+        authService.saveToken(token);
         dispatch(loginSuccess());
       })
       .catch(error => {
@@ -109,6 +111,15 @@ export const login = userData => {
         //when fail
         dispatch(loginFailure(error.response.data.errors));
       });
+  };
+};
+
+//user logout action creator
+export const logout = () => {
+  authService.invalidateUser();
+
+  return {
+    type: LOGOUT
   };
 };
 

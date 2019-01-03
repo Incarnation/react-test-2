@@ -24,12 +24,15 @@ class Login extends React.Component {
 
   //render the login component
   render() {
-    //const { isAuth, errors } = this.props.auth;
-    //const { successRegister } = this.props.location.state || false;
+    const { isAuth, errors } = this.props.auth;
+    //debugger;
+    //prop from registration page after successfully resgister
+    const { successRegister } = this.props.location.state || false;
 
-    // if (isAuth) {
-    //   return <Redirect to={{ pathname: "/rentals" }} />;
-    // }
+    //if user is already authenticated redirect to rental page
+    if (isAuth) {
+      return <Redirect to={{ pathname: "/rentals" }} />;
+    }
 
     //return login component
     return (
@@ -38,8 +41,13 @@ class Login extends React.Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Login</h1>
+              {successRegister && (
+                <div className="alert alert-success">
+                  <p>you have been successfully registered, please login now</p>
+                </div>
+              )}
 
-              <LoginForm submitCallBack={this.loginUser} />
+              <LoginForm submitCallBack={this.loginUser} errors={errors} />
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">
@@ -60,6 +68,7 @@ class Login extends React.Component {
 }
 
 //maping redux store to the component using props
+//passing the auth to the component from redux store
 function mapStateToProps(state) {
   return {
     auth: state.auth

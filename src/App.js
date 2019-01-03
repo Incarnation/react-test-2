@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import "App.css";
-import { Header } from "shared/Header";
+import { Header } from "components/shared/Header";
 import RentalListing from "components/rental/rental-listing/RentalListing";
 import RentalDetail from "components/rental/rental-detail/RentalDetail";
 
@@ -20,8 +20,12 @@ const store = require("./reducers").init();
 class App extends Component {
   componentWillMount() {
     //check the auth state when the component loads up
-    debugger;
+    //debugger;
     store.dispatch(actions.checkAuthState());
+  }
+
+  logout() {
+    store.dispatch(actions.logout());
   }
 
   render() {
@@ -29,7 +33,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <Header />
+            <Header logout={this.logout} />
             <div className="container">
               <Route
                 exact

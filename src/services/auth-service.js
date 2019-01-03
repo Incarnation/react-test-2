@@ -3,9 +3,11 @@ import * as jwt from "jsonwebtoken";
 import * as moment from "moment";
 
 class AuthService {
+  tokenKey = "auth_token";
+
   //get token from local storage
   getToken() {
-    return localStorage.getItem("auth_token");
+    return localStorage.getItem(this.tokenKey);
   }
 
   //get the expiration time of the token
@@ -29,6 +31,16 @@ class AuthService {
     const token = this.getToken();
 
     return token && this.isValid(token) ? true : false;
+  }
+
+  //remove token from storage
+  invalidateUser() {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  //save token to localStorage
+  saveToken(token) {
+    localStorage.setItem(this.tokenKey, token);
   }
 }
 

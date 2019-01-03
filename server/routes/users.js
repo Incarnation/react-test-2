@@ -5,7 +5,7 @@ const User = require("../controllers/user");
 //get router
 router.post("/auth", User.auth);
 
-//get rental by id router
+//user Registration router
 router.post("/register", User.register);
 
 module.exports = router;
