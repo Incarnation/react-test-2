@@ -2,7 +2,7 @@
 import * as jwt from "jsonwebtoken";
 import * as moment from "moment";
 
-class AuthServices {
+class AuthService {
   //get token from local storage
   getToken() {
     return localStorage.getItem("auth_token");
@@ -32,4 +32,4 @@ class AuthServices {
   }
 }
 
-export default new AuthServices();
+export default new AuthService();

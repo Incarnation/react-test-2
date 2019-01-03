@@ -7,6 +7,7 @@ import {
 } from "./types";
 
 import axios from "axios";
+import authService from "services/auth-service";
 
 const featchRentalByIdInit = () => {
   return {
@@ -76,10 +77,21 @@ export const register = userData => {
   );
 };
 
+//check auth state action creator
+//when the user refresh the pages after login
+export const checkAuthState = () => {
+  return async dispatch => {
+    debugger;
+    if (authService.isAuthenticated()) {
+      dispatch(loginSuccess());
+    }
+  };
+};
+
 //login action creater
 export const login = userData => {
   //async call
-  return dispatch => {
+  return async dispatch => {
     return axios
       .post("/api/v1/users/auth", { ...userData })
       .then(
@@ -87,13 +99,13 @@ export const login = userData => {
         res => res.data
       )
       .then(token => {
-        debugger;
+        //debugger;
         //when success
         localStorage.setItem("auth_token", token);
-        dispatch(loginSuccess(token));
+        dispatch(loginSuccess());
       })
       .catch(error => {
-        debugger;
+        //debugger;
         //when fail
         dispatch(loginFailure(error.response.data.errors));
       });
@@ -101,10 +113,9 @@ export const login = userData => {
 };
 
 //function to dispatch when success
-const loginSuccess = token => {
+const loginSuccess = () => {
   return {
-    type: LOGIN_SUCCESS,
-    token: token
+    type: LOGIN_SUCCESS
   };
 };
 

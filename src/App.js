@@ -9,6 +9,7 @@ import RentalDetail from "components/rental/rental-detail/RentalDetail";
 
 import Login from "components/login/Login";
 import { Register } from "components/register/Register";
+import * as actions from "actions";
 
 //import setupProxy from "./setupProxy";
 
@@ -17,6 +18,12 @@ import { Register } from "components/register/Register";
 const store = require("./reducers").init();
 
 class App extends Component {
+  componentWillMount() {
+    //check the auth state when the component loads up
+    debugger;
+    store.dispatch(actions.checkAuthState());
+  }
+
   render() {
     return (
       <Provider store={store}>
