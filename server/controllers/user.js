@@ -19,11 +19,13 @@ exports.auth = function(req, res) {
   User.findOne({ email }, function(err, user) {
     //mongoose error
     if (err) {
+      console.log("mongoose err 1");
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
 
     //user not exist
     if (!user) {
+      console.log("user not exist");
       return res.status(422).send({
         errors: [{ title: "Invalid User", detail: "User doesn't exist" }]
       });
@@ -45,6 +47,7 @@ exports.auth = function(req, res) {
 
       return res.json(token);
     } else {
+      console.log("Invalid crenditail");
       return res.status(422).send({
         errors: [{ title: "Invalid data", detail: "Wrong email or password" }]
       });
@@ -58,7 +61,9 @@ exports.auth = function(req, res) {
 exports.register = function(req, res) {
   //get info from the request body using body-parser
   //ES6 destructor
-  const { username, email, password, passwordconfirmation } = req.body;
+  const { username, email, password, passwordConfirmation } = req.body;
+  //console.log("password: " + password);
+  //console.log("password confirmation: " + passwordConfirmation);
 
   //validation username email password
   if (!username || !email || !password) {
@@ -67,8 +72,8 @@ exports.register = function(req, res) {
     });
   }
 
-  //validation  password and passwordconfirmation
-  if (password !== passwordconfirmation) {
+  //validation  password and passwordConfirmation
+  if (password !== passwordConfirmation) {
     return res.status(422).send({
       errors: [
         {

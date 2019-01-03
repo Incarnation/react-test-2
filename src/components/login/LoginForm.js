@@ -1,13 +1,24 @@
+//imports
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { BwmInput } from "components/shared/form/BwmInput";
 import { BwmResError } from "components/shared/form/BwmResError";
 import { required, minLength4 } from "components/shared/form/validators";
 
+//login component
 const LoginForm = props => {
-  const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props;
+  const {
+    handleSubmit,
+    pristine,
+    submitting,
+    submitCallBack,
+    valid,
+    errors
+  } = props;
+
+  //return jsx for loginform component
   return (
-    <form onSubmit={handleSubmit(submitCb)}>
+    <form onSubmit={handleSubmit(submitCallBack)}>
       <Field
         name="email"
         type="email"
@@ -31,7 +42,6 @@ const LoginForm = props => {
       >
         Login
       </button>
-      <BwmResError errors={errors} />
     </form>
   );
 };

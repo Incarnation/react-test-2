@@ -1,7 +1,9 @@
 import {
   FETCH_RENTAL_BY_ID_INIT,
   FETCH_RENTAL_BY_ID_SUCCESS,
-  FETCH_RENTALS_SUCCESS
+  FETCH_RENTALS_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS
 } from "./types";
 
 import axios from "axios";
@@ -12,6 +14,8 @@ const featchRentalByIdInit = () => {
   };
 };
 
+//action creator to fetch all the listing on the
+//index page when the page gets fetch
 export const fetchRentals = () => {
   return dispatch => {
     axios
@@ -25,6 +29,7 @@ export const fetchRentals = () => {
   };
 };
 
+//fetch individual rental by id
 export const featchRentalById = id => {
   return function(dispatch) {
     dispatch(featchRentalByIdInit());
@@ -59,7 +64,54 @@ const featchRentalByIdSuccess = rental => {
 
 //register user action creator
 export const register = userData => {
-  return axios
-    .post("/api/v1/users/register", userData)
-    .then(res => res.data, err => Promise.reject(err.response.data.errors));
+  return axios.post("/api/v1/users/register", { ...userData }).then(
+    //when success
+    res => {
+      return res.data;
+    },
+    //when fail
+    err => {
+      return Promise.reject(err.response.data.errors);
+    }
+  );
+};
+
+//login action creater
+export const login = userData => {
+  //async call
+  return dispatch => {
+    return axios
+      .post("/api/v1/users/auth", { ...userData })
+      .then(
+        //when success
+        res => res.data
+      )
+      .then(token => {
+        debugger;
+        //when success
+        localStorage.setItem("auth_token", token);
+        dispatch(loginSuccess(token));
+      })
+      .catch(error => {
+        debugger;
+        //when fail
+        dispatch(loginFailure(error.response.data.errors));
+      });
+  };
+};
+
+//function to dispatch when success
+const loginSuccess = token => {
+  return {
+    type: LOGIN_SUCCESS,
+    token: token
+  };
+};
+
+//function to dispatch when failed
+const loginFailure = errors => {
+  return {
+    type: LOGIN_FAILURE,
+    errors: errors
+  };
 };

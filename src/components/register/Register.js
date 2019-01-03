@@ -7,27 +7,36 @@ import * as actions from "actions";
 
 //Register component
 export class Register extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    //initial state
+    //initial state for errors and redirect
     this.state = {
       errors: [],
       redirect: false
     };
 
-    //bind this
+    //bind 'this' for registerUser functctoin
     this.registerUser = this.registerUser.bind(this);
   }
 
-  //call action creater
+  //call action creater to register the user
   registerUser(userData) {
-    actions
-      .register(userData)
-      .then(
-        registered => this.setState({ redirect: true }),
-        errors => this.setState({ errors })
-      );
+    actions.register(userData).then(
+      //when success
+      registered => {
+        this.setState({
+          redirect: true
+        });
+      },
+      //when fail
+      errors => {
+        console.log(errors);
+        this.setState({
+          errors: errors
+        });
+      }
+    );
   }
 
   render() {
@@ -41,6 +50,7 @@ export class Register extends React.Component {
       );
     }
 
+    //jsx
     return (
       <section id="register">
         <div className="bwm-form">
