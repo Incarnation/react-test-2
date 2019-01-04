@@ -3,13 +3,16 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import "App.css";
-import { Header } from "components/shared/Header";
+import Header from "components/shared/Header";
 import RentalListing from "components/rental/rental-listing/RentalListing";
 import RentalDetail from "components/rental/rental-detail/RentalDetail";
 
 import Login from "components/login/Login";
 import { Register } from "components/register/Register";
 import * as actions from "actions";
+
+import { ProtectedRoute } from "components/shared/auth/ProtectedRoute";
+import { LoggedinRoute } from "components/shared/auth/LoggedinRoute";
 
 //import setupProxy from "./setupProxy";
 
@@ -43,9 +46,13 @@ class App extends Component {
                 }}
               />
               <Route exact path="/rentals" component={RentalListing} />
-              <Route exact path="/rentals/:id" component={RentalDetail} />
+              <ProtectedRoute
+                exact
+                path="/rentals/:id"
+                component={RentalDetail}
+              />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
+              <LoggedinRoute exact path="/register" component={Register} />
             </div>
           </div>
         </BrowserRouter>
