@@ -12,6 +12,7 @@ export class RentalList extends React.Component {
   }
 
   render() {
+    //debugger;
     return <div className="row">{this.renderRentals()}</div>;
   }
 }

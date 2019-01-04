@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "App.css";
 import Header from "components/shared/Header";
 import RentalListing from "components/rental/rental-listing/RentalListing";
+import RentalSearchListing from "components/rental/rental-listing/RentalSearchListing";
 import RentalDetail from "components/rental/rental-detail/RentalDetail";
 
 import Login from "components/login/Login";
@@ -47,7 +48,14 @@ class App extends Component {
                   return <Redirect to="/rentals" />;
                 }}
               />
+
               <Route exact path="/rentals" component={RentalListing} />
+
+              <Route
+                exact
+                path="/rentals/:city/homes"
+                component={RentalSearchListing}
+              />
               <ProtectedRoute
                 exact
                 path="/rentals/:id"

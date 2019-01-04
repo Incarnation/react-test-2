@@ -50,10 +50,9 @@ router.get("", function(req, res) {
           ]
         });
       }
+      //console.log("rentals are : " + rentals);
       //if success return json
-      return res.json({
-        rentals: rentals
-      });
+      return res.json(rentals);
     });
 });
 
@@ -75,6 +74,7 @@ router.post("", UserCtrl.authMiddleware, function(req, res) {
   //get current logined user
   const user = res.locals.user;
 
+  //create new rental object
   const rental = new Rental({
     title,
     city,

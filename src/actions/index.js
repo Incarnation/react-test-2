@@ -4,7 +4,9 @@ import {
   FETCH_RENTALS_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  FETCH_RENTALS_FAIL,
+  FETCH_RENTALS_INIT
 } from "./types";
 
 import axios from "axios";
@@ -14,23 +16,31 @@ import axiosService from "services/axios-service";
 //create axiosService getInstance
 const axiosInstance = axiosService.getInstance();
 
-const featchRentalByIdInit = () => {
-  return {
-    type: FETCH_RENTAL_BY_ID_INIT
-  };
-};
-
 //action creator to fetch all the listing on the
 //index page when the page gets fetch
-export const fetchRentals = () => {
+export const fetchRentals = city => {
+  const url = city ? `/rentals?city=${city}` : "/rentals";
+  console.log("url: " + url);
   return dispatch => {
+    //always set to the intial state in main page
+    dispatch(featchRentalsInit());
+    debugger;
+    //axios call
     axiosInstance
-      .get("/rentals")
+      .get(url)
       .then(res => {
+        debugger;
         return res.data;
       })
       .then(rentals => {
+        //when success
         dispatch(featchRentalsSuccess(rentals));
+        debugger;
+      })
+      .catch(error => {
+        debugger;
+        //when fail
+        dispatch(featchRentalsFail(error.response.data.errors));
       });
   };
 };
@@ -53,6 +63,25 @@ export const featchRentalById = id => {
 };
 
 //action creaters to be dispatch after getting back the data from api
+const featchRentalByIdInit = () => {
+  return {
+    type: FETCH_RENTAL_BY_ID_INIT
+  };
+};
+
+const featchRentalsInit = () => {
+  return {
+    type: FETCH_RENTALS_INIT
+  };
+};
+
+const featchRentalsFail = err => {
+  return {
+    type: FETCH_RENTALS_FAIL,
+    errors: err
+  };
+};
+
 const featchRentalsSuccess = rentals => {
   return {
     type: FETCH_RENTALS_SUCCESS,

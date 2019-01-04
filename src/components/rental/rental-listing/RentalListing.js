@@ -7,13 +7,15 @@ class RentalListing extends React.Component {
   componentWillMount() {
     //debugger;
     this.props.dispatch(actions.fetchRentals());
+    //debugger;
   }
 
   render() {
-    //debugger;
+    debugger;
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home All Around the World</h1>
+
         <RentalList rentals={this.props.rentals} />
       </section>
     );
