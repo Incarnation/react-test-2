@@ -34,6 +34,40 @@ class Header extends React.Component {
     );
   }
 
+  //Owner's section
+  //after login owner can create, manage Rental
+  renderOwnerSection(isAuth) {
+    if (isAuth) {
+      return (
+        <div className="nav-item dropdown">
+          <a
+            className="nav-link nav-item dropdown-toggle clickable"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Owner Section
+          </a>
+          <div
+            className="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <Link className="dropdown-item" to="/rentals/new">
+              Create Rental
+            </Link>
+            <Link className="dropdown-item" to="/rentals/manage">
+              Manage Rentals
+            </Link>
+            <Link className="dropdown-item" to="/bookings/manage">
+              Manage Bookings
+            </Link>
+          </div>
+        </div>
+      );
+    }
+  }
+
   //function to redirect user after logout
   //withRouter higher order function provide 'history' props to this component
   logoutUser() {
@@ -43,6 +77,9 @@ class Header extends React.Component {
   }
 
   render() {
+    //check Authorization and user from the props
+    const { username, isAuth } = this.props.auth;
+
     return (
       <nav className="navbar navbar-dark navbar-expand-lg">
         <div className="container">
@@ -63,7 +100,11 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav ml-auto">{this.renderAuthButton()}</div>
+            <div className="navbar-nav ml-auto">
+              {isAuth && <a className="nav-item nav-link">{username}</a>}
+              {this.renderOwnerSection(isAuth)}
+              {this.renderAuthButton(isAuth)}
+            </div>
           </div>
         </div>
       </nav>

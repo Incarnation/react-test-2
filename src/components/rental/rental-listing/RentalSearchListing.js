@@ -2,6 +2,7 @@ import React from "react";
 import { RentalList } from "./RentalList";
 import { connect } from "react-redux";
 import * as actions from "actions";
+import { toUpperCase } from "helpers";
 
 class RentalSearchListing extends React.Component {
   constructor() {
@@ -29,10 +30,10 @@ class RentalSearchListing extends React.Component {
   //compare the previous url with the currentURL
   //if different trigger the function call
   componentDidUpdate(prevProps) {
-    debugger;
+    //debugger;
     const currentURL = this.props.match.params.city;
     const prevURL = prevProps.match.params.city;
-    debugger;
+    //debugger;
 
     if (currentURL !== prevURL) {
       this.searchRentalByCity();
@@ -49,7 +50,7 @@ class RentalSearchListing extends React.Component {
     }
 
     if (data.length > 0) {
-      title = `Your Home In ${searchedCity}`;
+      title = `Your Home In ${toUpperCase(searchedCity)}`;
     }
 
     return <h1 className="page-title">{title}</h1>;

@@ -20,7 +20,7 @@ const axiosInstance = axiosService.getInstance();
 //index page when the page gets fetch
 export const fetchRentals = city => {
   const url = city ? `/rentals?city=${city}` : "/rentals";
-  console.log("url: " + url);
+  //console.log("url: " + url);
   return dispatch => {
     //always set to the intial state in main page
     dispatch(featchRentalsInit());
@@ -158,8 +158,10 @@ export const logout = () => {
 
 //function to dispatch when success
 const loginSuccess = () => {
+  const username = authService.getUserName();
   return {
-    type: LOGIN_SUCCESS
+    type: LOGIN_SUCCESS,
+    username: username
   };
 };
 

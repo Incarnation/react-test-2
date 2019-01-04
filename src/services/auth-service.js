@@ -42,6 +42,11 @@ class AuthService {
   saveToken(token) {
     localStorage.setItem(this.tokenKey, token);
   }
+
+  //get username from token
+  getUserName() {
+    return jwt.decode(this.getToken()).username;
+  }
 }
 
 export default new AuthService();
