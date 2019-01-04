@@ -1,11 +1,18 @@
 import React from "react";
 import RentalCreateForm from "./RentalCreateForm";
 import { Redirect } from "react-router-dom";
+import * as actions from "actions";
 
 export class RentalCreate extends React.Component {
   constructor(props) {
     super(props);
+    //inistal state
+    this.state = {
+      errors: [],
+      redirect: false
+    };
 
+    //category initialValues
     this.rentalCateogies = ["apartment", "house", "condo"];
 
     this.createRental = this.createRental.bind(this);
@@ -14,10 +21,23 @@ export class RentalCreate extends React.Component {
   componentWillMount() {}
 
   createRental(values) {
-    console.log(values);
+    //console.log(values);
+    //call action create to create rental
+    actions.createRental(values).then(
+      rental => {
+        this.setState({ redirect: true });
+      },
+      errors => {
+        this.setState({ errors: errors });
+      }
+    );
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={{ pathname: "/rentals" }} />;
+    }
+
     return (
       <section id="newRental">
         <div className="bwm-form">
@@ -27,6 +47,7 @@ export class RentalCreate extends React.Component {
               <RentalCreateForm
                 submitCallBack={this.createRental}
                 options={this.rentalCateogies}
+                errors={this.state.errors}
               />
             </div>
             <div className="col-md-6 ml-auto">

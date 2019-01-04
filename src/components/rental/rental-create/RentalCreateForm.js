@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { BwmInput } from "components/shared/form/BwmInput";
 import { BwmSelect } from "components/shared/form/BwmSelect";
 import { BwmTextArea } from "components/shared/form/BwmTextArea";
-//import { BwmFileUpload } from "components/shared/form/BwmFileUpload";
+import { BwmFileUpload } from "components/shared/form/BwmFileUpload";
 import { BwmResError } from "components/shared/form/BwmResError";
 // import { required, minLength4 } from 'components/shared/form/validators';
 
@@ -56,8 +56,8 @@ const RentalCreateForm = props => {
         className="form-control"
         component={BwmSelect}
       />
-      {/*
-      <Field name="image" label="Image" component={BwmFileUpload} />*/}
+
+      <Field name="image" label="Image" component={BwmFileUpload} />
 
       <Field
         name="bedrooms"
@@ -88,6 +88,7 @@ const RentalCreateForm = props => {
       >
         Create Rental
       </button>
+      <BwmResError errors={errors} />
     </form>
   );
 };

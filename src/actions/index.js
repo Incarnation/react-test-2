@@ -170,3 +170,18 @@ const loginFailure = errors => {
     errors: errors
   };
 };
+
+// Rental Creation ACTIONS ---------------------------
+
+export const createRental = data => {
+  return axiosInstance.post("/rentals", { ...data }).then(
+    //when success
+    res => {
+      return res.data;
+    },
+    //when fail
+    err => {
+      return Promise.reject(err.response.data.errors);
+    }
+  );
+};
