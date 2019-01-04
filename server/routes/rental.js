@@ -15,7 +15,7 @@ router.get("/:id", function(req, res) {
   Rental.findById(id, function(err, rental) {
     //if not found return error message
     if (err) {
-      res.status(422).send({
+      return res.status(422).send({
         errors: [{ title: "Rental Error", detail: "Could not find Rental" }]
       });
     }
@@ -41,7 +41,7 @@ router.get("", function(req, res) {
 
       //if there no rentals return 422 error
       if (rentals.length === 0 && city) {
-        res.status(422).send({
+        return res.status(422).send({
           errors: [
             {
               title: "No Rentals Found",

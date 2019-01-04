@@ -24,21 +24,21 @@ export const fetchRentals = city => {
   return dispatch => {
     //always set to the intial state in main page
     dispatch(featchRentalsInit());
-    debugger;
+    //debugger;
     //axios call
     axiosInstance
       .get(url)
       .then(res => {
-        debugger;
+        //debugger;
         return res.data;
       })
       .then(rentals => {
         //when success
         dispatch(featchRentalsSuccess(rentals));
-        debugger;
+        //debugger;
       })
       .catch(error => {
-        debugger;
+        //debugger;
         //when fail
         dispatch(featchRentalsFail(error.response.data.errors));
       });
@@ -115,7 +115,7 @@ export const register = userData => {
 //check auth state action creator
 //when the user refresh the pages after login
 export const checkAuthState = () => {
-  return async dispatch => {
+  return dispatch => {
     //debugger;
     if (authService.isAuthenticated()) {
       dispatch(loginSuccess());
@@ -126,7 +126,7 @@ export const checkAuthState = () => {
 //login action creater
 export const login = userData => {
   //async call
-  return async dispatch => {
+  return dispatch => {
     return axios
       .post("/api/v1/users/auth", { ...userData })
       .then(

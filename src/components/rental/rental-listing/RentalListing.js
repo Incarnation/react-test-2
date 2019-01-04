@@ -11,7 +11,7 @@ class RentalListing extends React.Component {
   }
 
   render() {
-    debugger;
+    //debugger;
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home All Around the World</h1>
