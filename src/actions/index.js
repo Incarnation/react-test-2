@@ -9,6 +9,10 @@ import {
 
 import axios from "axios";
 import authService from "services/auth-service";
+import axiosService from "services/axios-service";
+
+//create axiosService getInstance
+const axiosInstance = axiosService.getInstance();
 
 const featchRentalByIdInit = () => {
   return {
@@ -20,8 +24,8 @@ const featchRentalByIdInit = () => {
 //index page when the page gets fetch
 export const fetchRentals = () => {
   return dispatch => {
-    axios
-      .get("/api/v1/rentals")
+    axiosInstance
+      .get("/rentals")
       .then(res => {
         return res.data;
       })

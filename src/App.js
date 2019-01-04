@@ -1,3 +1,4 @@
+//required imports
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
@@ -31,6 +32,7 @@ class App extends Component {
     store.dispatch(actions.logout());
   }
 
+  //render main page components
   render() {
     return (
       <Provider store={store}>
