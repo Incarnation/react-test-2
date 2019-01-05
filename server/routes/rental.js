@@ -9,6 +9,21 @@ router.get("/secret", UserCtrl.authMiddleware, function(req, res) {
   res.json({ secret: true });
 });
 
+//manage rental for the user who created route
+router.get("/manage", UserCtrl.authMiddleware, function(req, res) {
+  const user = res.locals.user;
+
+  Rental.where({ user: user })
+    //.populate("bookings")
+    .exec(function(err, rental) {
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) });
+      }
+
+      return res.json(rental);
+    });
+});
+
 //get rental by id router
 router.get("/:id", function(req, res) {
   const id = req.params.id;
@@ -56,7 +71,7 @@ router.get("", function(req, res) {
     });
 });
 
-//create rental route
+//create a new rental route for the user
 router.post("", UserCtrl.authMiddleware, function(req, res) {
   //get all value from request body
   const {
@@ -118,6 +133,11 @@ router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
   //get user and id
   Rental.findById(req.params.id)
     .populate("user", "_id")
+    //.populate({
+    //path: "bookings",
+    //select: "startAt",
+    //  match: { startAt: { $gt: new Date() } }
+    //})
     .exec(function(err, rental) {
       //mongodb error
       if (err) {
@@ -151,7 +171,7 @@ router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
       rental.remove(function(err) {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
-          return res.json({ status: "error 2" });
+          //return res.json({ status: "error 2" });
         }
 
         return res.json({ status: "deleted" });

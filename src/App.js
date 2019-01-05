@@ -17,6 +17,8 @@ import * as actions from "actions";
 import { ProtectedRoute } from "components/shared/auth/ProtectedRoute";
 import { LoggedinRoute } from "components/shared/auth/LoggedinRoute";
 
+import { RentalManage } from "components/rental/rental-manage/RentalManage";
+import { BookingManage } from "components/booking/booking-manage/BookingManage";
 //import setupProxy from "./setupProxy";
 
 //setupProxy();
@@ -57,6 +59,16 @@ class App extends Component {
                   exact
                   path="/rentals/:city/homes"
                   component={RentalSearchListing}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/rentals/manage"
+                  component={RentalManage}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/bookings/manage"
+                  component={BookingManage}
                 />
                 <ProtectedRoute
                   exact

@@ -187,3 +187,17 @@ export const createRental = data => {
     }
   );
 };
+
+//USER manage Rental ACTIONS ---------------------------
+export const getUserRentals = () => {
+  return axiosInstance.get("/rentals/manage").then(
+    //when success
+    res => {
+      return res.data;
+    },
+    //when fail
+    err => {
+      return Promise.reject(err.response.data.errors);
+    }
+  );
+};
