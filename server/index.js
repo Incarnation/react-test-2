@@ -8,7 +8,7 @@ const User = require("./models/user");
 const rentalRoutes = require("./routes/rental");
 const userRoutes = require("./routes/users");
 const FakeDb = require("./fake-db");
-
+const imageUploadRoute = require("./routes/image-upload");
 const path = require("path");
 
 //use the new parser
@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 //apply middleware to routes
 app.use("/api/v1/rentals", rentalRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/", imageUploadRoute);
 
 //PRODUCTION SETTINGS------------------------------------
 if (process.env.NODE_ENV === "production") {
