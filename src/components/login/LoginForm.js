@@ -16,7 +16,7 @@ const LoginForm = props => {
     errors
   } = props;
 
-  debugger;
+  //debugger;
   //return jsx for loginform component
   return (
     <form onSubmit={handleSubmit(submitCallBack)}>
