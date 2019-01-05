@@ -48,7 +48,6 @@ router.get("", function(req, res) {
   Rental.find(query)
     .select("-bookings")
     .exec(function(err, rentals) {
-      //console.log("rentals are : " + foundRentals);
       //if there are error
       if (err) {
         return res.status(422).send({ errors: normalizeErrors(err.errors) });
@@ -65,7 +64,7 @@ router.get("", function(req, res) {
           ]
         });
       }
-      //console.log("rentals are : " + rentals);
+
       //if success return json
       return res.json(rentals);
     });
@@ -126,8 +125,6 @@ router.post("", UserCtrl.authMiddleware, function(req, res) {
 router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
   const user = res.locals.user;
 
-  //console.log("id is: " + req.params.id);
-
   //find the rental using id from req
   //get the booking detail from rental
   //get user and id
@@ -144,8 +141,7 @@ router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
         return res.status(422).send({ errors: normalizeErrors(err.errors) });
         //return res.json({ status: "error 1" });
       }
-      console.log(user.id);
-      console.log(rental.user.id);
+
       //check if id are the same
       if (user.id !== rental.user.id) {
         return res.status(422).send({
@@ -168,7 +164,7 @@ router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
       }
 
       //remove the rental from mongodb
-      rental.deleteOne(function(err) {
+      rental.remove(function(err) {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
           //return res.json({ status: "error 2" });
