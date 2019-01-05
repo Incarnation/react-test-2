@@ -38,7 +38,7 @@ export const fetchRentals = city => {
         //debugger;
       })
       .catch(error => {
-        debugger;
+        //debugger;
         //when fail
         dispatch(featchRentalsFail(error.response.data.errors));
       });

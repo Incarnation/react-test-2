@@ -111,7 +111,7 @@ router.post("", UserCtrl.authMiddleware, function(req, res) {
     }
 
     //update the user with new rental in mongodb
-    User.update(
+    User.updateOne(
       { _id: user.id },
       { $push: { rentals: rental } },
       function() {}
@@ -168,7 +168,7 @@ router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
       }
 
       //remove the rental from mongodb
-      rental.remove(function(err) {
+      rental.deleteOne(function(err) {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
           //return res.json({ status: "error 2" });
