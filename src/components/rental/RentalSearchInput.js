@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 
 class RentalSearchInput extends React.Component {
   constructor(props) {

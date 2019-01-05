@@ -38,7 +38,7 @@ export const fetchRentals = city => {
         //debugger;
       })
       .catch(error => {
-        //debugger;
+        debugger;
         //when fail
         dispatch(featchRentalsFail(error.response.data.errors));
       });
@@ -191,6 +191,20 @@ export const createRental = data => {
 //USER manage Rental ACTIONS ---------------------------
 export const getUserRentals = () => {
   return axiosInstance.get("/rentals/manage").then(
+    //when success
+    res => {
+      return res.data;
+    },
+    //when fail
+    err => {
+      return Promise.reject(err.response.data.errors);
+    }
+  );
+};
+
+//USER Delete rental action
+export const deleteRental = rentalId => {
+  return axiosInstance.delete(`/rentals/${rentalId}`).then(
     //when success
     res => {
       return res.data;

@@ -5,7 +5,6 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
   Circle,
   InfoWindow
 } from "react-google-maps";

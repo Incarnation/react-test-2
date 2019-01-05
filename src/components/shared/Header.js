@@ -11,9 +11,7 @@ class Header extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
   }
 
-  renderAuthButton() {
-    const { isAuth } = this.props.auth;
-
+  renderAuthButton(isAuth) {
     if (isAuth) {
       return (
         <a className="nav-item nav-link clickable" onClick={this.logoutUser}>
