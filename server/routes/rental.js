@@ -107,4 +107,56 @@ router.post("", UserCtrl.authMiddleware, function(req, res) {
   });
 });
 
+//delete rental route
+router.delete("/:id", UserCtrl.authMiddleware, function(req, res) {
+  const user = res.locals.user;
+
+  //console.log("id is: " + req.params.id);
+
+  //find the rental using id from req
+  //get the booking detail from rental
+  //get user and id
+  Rental.findById(req.params.id)
+    .populate("user", "_id")
+    .exec(function(err, rental) {
+      //mongodb error
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) });
+        //return res.json({ status: "error 1" });
+      }
+      console.log(user.id);
+      console.log(rental.user.id);
+      //check if id are the same
+      if (user.id !== rental.user.id) {
+        return res.status(422).send({
+          errors: [
+            { title: "Ivalid User", detail: "You are not the rental owner" }
+          ]
+        });
+      }
+
+      //if there is booking
+      if (rental.bookings.length > 0) {
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Active Booking",
+              detail: "Cannot delete rental with active booking"
+            }
+          ]
+        });
+      }
+
+      //remove the rental from mongodb
+      rental.remove(function(err) {
+        if (err) {
+          return res.status(422).send({ errors: normalizeErrors(err.errors) });
+          return res.json({ status: "error 2" });
+        }
+
+        return res.json({ status: "deleted" });
+      });
+    });
+});
+
 module.exports = router;
