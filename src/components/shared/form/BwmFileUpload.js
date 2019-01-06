@@ -76,6 +76,7 @@ export class BwmFileUpload extends React.Component {
   }
 
   onImageLoaded(image) {
+    /*
     //check the Minimun size of the image
     if (image.naturalWidth < 950 && image.naturalHeight < 720) {
       this.setState({
@@ -90,6 +91,7 @@ export class BwmFileUpload extends React.Component {
       //debugger;
       return;
     }
+    */
 
     this.setState({
       crop: makeAspectCrop(

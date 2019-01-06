@@ -27,10 +27,6 @@ mongoose.connect(config.DB_URI).then(err => {
   }
 });
 
-//DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
-//warning resolution
-mongoose.set("useCreateIndex", true);
-
 //create an express server
 const app = express();
 
