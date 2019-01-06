@@ -1,5 +1,3 @@
-# react-test-2
-
 <img class='header-img' src='https://github.com/Incarnation/react-test-2/blob/master/screenshots/home_page.jpg' />
 
 
