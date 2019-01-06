@@ -56,10 +56,7 @@ export class RentalCreate extends React.Component {
                 <h2 className="catchphrase">
                   Hundreds of awesome places in reach of few clicks.
                 </h2>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/create-rental.jpg"}
-                  alt=""
-                />
+                <img src={process.env.PUBLIC_URL + "/img/image3.jpg"} alt="" />
               </div>
             </div>
           </div>
