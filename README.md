@@ -3,6 +3,8 @@
 A reactive Single-Page Application that allows user to create rentals post, manage their rentals
 
 Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbooking.herokuapp.com/</a>
+<br/>
+**note:currently using Heroku free instance which would go to sleep after 30 min of inactivity, Please refresh the page 1 more time after a few seconds to see the site**
 
 ## Features:
 <p>
@@ -15,8 +17,8 @@ Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbook
   <li>Users are able to upload their image</li>
   <li>Users are able see all of their listing and decide to delete or update them</li>
   <li>Search functionailty is available</li>
-  
 </ul>
+
 <p/>
 <br />
 <img src='https://github.com/Incarnation/react-test-2/blob/master/screenshots/create_rental_page.jpg' />
