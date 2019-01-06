@@ -2,6 +2,8 @@
 
 A reactive Single-Page Application that allows user to create rentals post, manage their rentals
 
+Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbooking.herokuapp.com/</a>
+
 ## Features:
 <p>
 <ul>
@@ -16,14 +18,18 @@ A reactive Single-Page Application that allows user to create rentals post, mana
   
 </ul>
 <p/>
-
+<br />
 <img src='https://github.com/Incarnation/react-test-2/blob/master/screenshots/create_rental_page.jpg' />
-
+<br />
 <img src='https://github.com/Incarnation/react-test-2/blob/master/screenshots/rental_detail_page.jpg' />
-
+<br />
 <img src='https://github.com/Incarnation/react-test-2/blob/master/screenshots/manage_rental_page.jpg' />
+<br />
 
-
-
+# Todo list
+- [ ] A booking system will be added, each user will be able to schedule a viewing of the houses
+- [ ] The owner will be able to see all the viewing or booking request and confirmed with the requester 
+- [ ] A comment field for each of the rental will be added so that user will be make comments on it
+- [ ] More robusted UI will be added or modification of the existing UI
 
 
