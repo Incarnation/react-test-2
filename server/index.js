@@ -19,13 +19,19 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
 //connect to mongodb db
-mongoose.connect(config.DB_URI).then(err => {
-  //dev environment only
-  if (process.env.NODE_ENV !== "production") {
-    const fakeDb = new FakeDb();
-    //fakeDb.seedDb();
-  }
-});
+mongoose
+  .connect(config.DB_URI)
+  .then(err => {
+    //dev environment only
+    if (process.env.NODE_ENV !== "production") {
+      const fakeDb = new FakeDb();
+      //fakeDb.seedDb();
+    }
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database..." + err);
+    process.exit();
+  });
 
 //create an express server
 const app = express();
