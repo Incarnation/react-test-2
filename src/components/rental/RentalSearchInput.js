@@ -37,7 +37,7 @@ class RentalSearchInput extends React.Component {
           ref={this.searchInput}
           className="form-control mr-sm-2 bwm-search"
           type="search"
-          placeholder="Try New York"
+          placeholder="Try Toronto"
           aria-label="Search"
         />
         <button

@@ -79,11 +79,10 @@ class Header extends React.Component {
     const { username, isAuth } = this.props.auth;
 
     return (
-      <nav className="navbar navbar-dark navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg  bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/rentals">
-            My App
-            <img src={process.env.PUBLIC_URL + "/img/react-logo.svg"} alt="" />
+            <img src={process.env.PUBLIC_URL + "/img/home_logo_2.png"} alt="" />
           </Link>
           <RentalSearchInput />
           <button

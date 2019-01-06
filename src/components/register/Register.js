@@ -68,10 +68,7 @@ export class Register extends React.Component {
                   As our member you have access to most awesome places in the
                   world.
                 </h2>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/register-image.jpg"}
-                  alt=""
-                />
+                <img src={process.env.PUBLIC_URL + "/img/image1.jpg"} alt="" />
               </div>
             </div>
           </div>
