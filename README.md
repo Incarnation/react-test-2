@@ -7,7 +7,10 @@ Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbook
 **note:currently using Heroku free instance which would go to sleep after 30 min of inactivity, Please refresh the page 1 more time after a few seconds to see the site**
 
 ## Features:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2129e75130cbbe654bd7fd93ec65984a3906460e
 <p>
 <ul>
   <li>Frontend implemented with React, Redux</li>
@@ -30,8 +33,17 @@ Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbook
 <br />
 
 # Todo list
+<<<<<<< HEAD
 
 - [ ] A booking system will be added, each user will be able to schedule a viewing of the houses
 - [ ] The owner will be able to see all the viewing or booking request and confirmed with the requester
 - [ ] A comment field for each of the rental will be added so that user will be make comments on it
 - [ ] More robusted UI will be added or modification of the existing UI
+=======
+- [ ] A booking system will be added, each user will be able to schedule a viewing of the houses
+- [ ] The owner will be able to see all the viewing or booking request and confirmed with the requester 
+- [ ] A comment field for each of the rental will be added so that user will be make comments on it
+- [ ] More robusted UI will be added or modification of the existing UI
+
+
+>>>>>>> 2129e75130cbbe654bd7fd93ec65984a3906460e
