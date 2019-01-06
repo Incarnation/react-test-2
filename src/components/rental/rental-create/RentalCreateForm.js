@@ -78,7 +78,7 @@ const RentalCreateForm = props => {
         name="shared"
         type="checkbox"
         label="Shared"
-        className="form-control"
+        className="form-check"
         component={BwmInput}
       />
       <button

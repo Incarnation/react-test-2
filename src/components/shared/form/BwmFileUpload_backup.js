@@ -87,7 +87,7 @@ export class BwmFileUpload extends React.Component {
         imageBase64: ""
       });
       toast.error("Minimun width of image is 950px and height is 720px");
-      //debugger;
+      debugger;
       return;
     }
 

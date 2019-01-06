@@ -21,6 +21,7 @@ export class RentalCreate extends React.Component {
   componentWillMount() {}
 
   createRental(values) {
+    //debugger;
     //console.log(values);
     //call action create to create rental
     actions.createRental(values).then(

@@ -215,3 +215,30 @@ export const deleteRental = rentalId => {
     }
   );
 };
+
+//Upload image
+export const uploadImage = image => {
+  //passing in a formdata for image
+  const formData = new FormData();
+  formData.append("image", image);
+
+  //axios post request to upload image to server
+  return axiosInstance
+    .post("/image-upload", formData)
+    .then(
+      //when success
+      res => {
+        //debugger;
+        return res.data.imageUrl;
+      }
+      //when fail
+      //err => {
+      //return Promise.reject(err.response.data.errors);
+      //}
+    )
+    .catch(err => {
+      //debugger;
+      //when fail
+      return Promise.reject(err.response.data.errors[0]);
+    });
+};
