@@ -5,7 +5,7 @@ A reactive Single-Page Application that allows user to create rentals post, mana
 
 
 ### Technology
-Frontend implemented with React, Redux
-Backend impletemented useing Node.js, Express.js, Mongodb, Mongoose 
-used Google Map API to display the location of the houses
-used Amazon AWS S3 services to store the user uploaded images
+-Frontend implemented with React, Redux
+-Backend impletemented useing Node.js, Express.js, Mongodb, Mongoose 
+-used Google Map API to display the location of the houses
+-used Amazon AWS S3 services to store the user uploaded images
