@@ -4,7 +4,7 @@ A reactive Single-Page Application that allows user to create rentals post, mana
 
 Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbooking.herokuapp.com/</a>
 <br/>
-**note:currently using Heroku free instance which would go to sleep after 30 min of inactivity, Please refresh the page 1 more time after a few seconds to see the site**
+
 
 ## Features:
 <p>
@@ -33,5 +33,6 @@ Web Site Page: <a href='https://rentalbooking.herokuapp.com/'>https://rentalbook
 - [ ] The owner will be able to see all the viewing or booking request and confirmed with the requester 
 - [ ] A comment field for each of the rental will be added so that user will be make comments on it
 - [ ] More robusted UI will be added or modification of the existing UI
+- [ ] Will be implementing Redis cache system to avoid the backend hitting the database too many times
 
 
