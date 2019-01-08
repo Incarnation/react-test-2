@@ -7,6 +7,7 @@ const Rental = require("./models/rental");
 const User = require("./models/user");
 const rentalRoutes = require("./routes/rental");
 const userRoutes = require("./routes/users");
+const bookingRoutes = require("./routes/bookings");
 const FakeDb = require("./fake-db");
 const imageUploadRoute = require("./routes/image-upload");
 const path = require("path");
@@ -24,7 +25,7 @@ mongoose
   .then(err => {
     //dev environment only
     if (process.env.NODE_ENV !== "production") {
-      const fakeDb = new FakeDb();
+      //const fakeDb = new FakeDb();
       //fakeDb.seedDb();
     }
   })
@@ -43,6 +44,7 @@ app.use(bodyParser.json());
 app.use("/api/v1/rentals", rentalRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/", imageUploadRoute);
+app.use("/api/v1/bookings", bookingRoutes);
 
 //PRODUCTION SETTINGS------------------------------------
 if (process.env.NODE_ENV === "production") {
